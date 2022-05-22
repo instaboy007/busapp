@@ -16,7 +16,7 @@ class _BusDetailsState extends State<BusDetailsPage> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(200),
+        preferredSize: const Size.fromHeight(160),
         child: AppBar(
           elevation: 0,
           backgroundColor: Colors.transparent,
@@ -31,7 +31,7 @@ class _BusDetailsState extends State<BusDetailsPage> {
                   bottom: Radius.elliptical(
                       MediaQuery.of(context).size.width, 25.0)),
             ),
-            height: 200,
+            height: 160,
             padding: const EdgeInsets.all(65),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -69,108 +69,15 @@ class _BusDetailsState extends State<BusDetailsPage> {
                 ),
               ],
             ),
-            // child: Card(
-            //   // margin: const EdgeInsets.all(20),
-            //   child: Center(
-            //     child: Container(
-            //       constraints:
-            //           const BoxConstraints(minHeight: 200, maxHeight: 200),
-            //       padding: const EdgeInsets.all(60),
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-            //       children: [
-            //         Column(
-            //           crossAxisAlignment: CrossAxisAlignment.center,
-            //           children: const [
-            //             Text(
-            //               'From',
-            //               style: TextStyle(
-            //                 color: Colors.white,
-            //                 fontSize: 25,
-            //                 fontWeight: FontWeight.w900,
-            //               ),
-            //             ),
-            //           ],
-            //         ),
-            //         Column(children: const [
-            //           Icon(
-            //             Icons.compare_arrows_outlined,
-            //             color: Colors.white,
-            //           ),
-            //         ]),
-            //         Column(
-            //           children: const [
-            //             Text(
-            //               'To',
-            //               style: TextStyle(
-            //                 color: Colors.white,
-            //                 fontSize: 25,
-            //                 fontWeight: FontWeight.w900,
-            //               ),
-            //             ),
-            //           ],
-            //         ),
-            //       ],
-            //     ),
-            //   ),
-            // ),
-            // ),
           ),
         ),
       ),
       body: Stack(
         children: <Widget>[
           const BackgroundImage(),
-          // SizedBox(
-          //   height: 200,
-          //   child: Card(
-          //     color: const Color.fromARGB(200, 255, 255, 255),
-          //     margin: const EdgeInsets.all(20),
-          //     child: Center(
-          //       child: Container(
-          //         constraints:
-          //             const BoxConstraints(minHeight: 150, maxHeight: 150),
-          //         padding: const EdgeInsets.all(50),
-          //         child: Row(
-          //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //           children: [
-          //             Column(
-          //               crossAxisAlignment: CrossAxisAlignment.center,
-          //               children: const [
-          //                 Text(
-          //                   'From',
-          //                   style: TextStyle(
-          //                     color: Colors.black87,
-          //                     fontSize: 25,
-          //                     fontWeight: FontWeight.w900,
-          //                   ),
-          //                 ),
-          //               ],
-          //             ),
-          //             const Icon(
-          //               Icons.compare_arrows_outlined,
-          //             ),
-          //             Column(
-          //               children: const [
-          //                 Text(
-          //                   'To',
-          //                   style: TextStyle(
-          //                     color: Colors.black87,
-          //                     fontSize: 25,
-          //                     fontWeight: FontWeight.w900,
-          //                   ),
-          //                 ),
-          //               ],
-          //             ),
-          //           ],
-          //         ),
-          //       ),
-          //     ),
-          //   ),
-          // ),
           Container(
-            padding: const EdgeInsets.fromLTRB(20, 200, 20, 0),
-            height: 600,
+            padding: const EdgeInsets.fromLTRB(40, 180, 40, 0),
+            height: 620,
             child: ListView.separated(
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
@@ -188,7 +95,7 @@ class _BusDetailsState extends State<BusDetailsPage> {
               },
               separatorBuilder: (BuildContext context, int index) =>
                   const Divider(
-                height: 5,
+                height: 2,
               ),
             ),
           ),

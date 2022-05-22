@@ -27,14 +27,14 @@ class _BusDetailCardState extends State<BusDetailCard> {
   
     Random random = Random();
     int randomNumber = random.nextInt(8); 
-    double minHeight=120;
+    double minHeight=100;
   final color= _lightColors[randomNumber%_lightColors.length];
     return Card(
       color:color,
       margin: const EdgeInsets.all(10),
       child: Container(
         constraints: BoxConstraints(minHeight: minHeight),
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
