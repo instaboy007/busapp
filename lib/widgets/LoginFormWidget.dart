@@ -1,6 +1,8 @@
 import 'package:busapp/views/RegisterPage.dart';
 import 'package:flutter/material.dart';
 
+import 'package:busapp/views/HomePage.dart';
+
 class LoginForm extends StatefulWidget {
   const LoginForm({Key? key}) : super(key: key);
 
@@ -66,6 +68,11 @@ class _LoginFormState extends State<LoginForm> {
                     onPressed: () {
                       print(usernameController.text);
                       print(passwordController.text);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const HomePage()),
+                      );
                     },
                   )
               ),
