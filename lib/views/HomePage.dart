@@ -16,8 +16,19 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Bussify'),
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(110),
+          child: AppBar(
+            automaticallyImplyLeading: false,
+            title: const Text(
+              'Search for Buses',
+              style: TextStyle(color: Colors.white, fontSize: 28),
+            ),
+            centerTitle: true,
+            flexibleSpace: Container(
+              decoration: const BoxDecoration(color: Colors.blueAccent),
+            ),
+          ),
         ),
         body: Center(
           child: Container(
@@ -108,10 +119,10 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               const SizedBox(
-                height:10,
+                height: 10,
               ),
               SizedBox(
-                height:50 ,
+                height: 50,
                 width: 200,
                 child: ElevatedButton(
                   style: TextButton.styleFrom(
@@ -119,10 +130,10 @@ class _HomePageState extends State<HomePage> {
                   ),
                   onPressed: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const BusDetailsPage()),
-                      );
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const BusDetailsPage()),
+                    );
                   },
                   child: const Text('Search Buses '),
                 ),

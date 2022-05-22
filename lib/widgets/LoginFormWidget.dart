@@ -17,19 +17,16 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      
-      padding: const EdgeInsets.fromLTRB(50,100,50,100),
+      padding: const EdgeInsets.fromLTRB(20,20,20,20),
       child: Center(
         child: Container(
-
           padding: const EdgeInsets.all(20),
           decoration: const BoxDecoration(
             color: Color.fromARGB(200, 255, 255, 255),
             borderRadius: BorderRadius.all(Radius.circular(20))
           ),
-          
-          height: 360,
           child: ListView(
+            shrinkWrap: true,
             children: <Widget>[
               Container(
                   alignment: Alignment.center,
@@ -37,7 +34,9 @@ class _LoginFormState extends State<LoginForm> {
                   child: const Text(
                     'Sign in',
                     style: TextStyle(fontSize: 20),
-                  )),
+                  )
+              ),
+      
               Container(
                 padding: const EdgeInsets.all(10),
                 child: TextField(
@@ -48,6 +47,7 @@ class _LoginFormState extends State<LoginForm> {
                   ),
                 ),
               ),
+      
               Container(
                 padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
                 child: TextField(
@@ -105,7 +105,7 @@ class _LoginFormState extends State<LoginForm> {
               ),
             ],
           )
-        )
+        ),
       ),
     );
   }
