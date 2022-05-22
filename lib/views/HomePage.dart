@@ -68,7 +68,8 @@ class _HomePageState extends State<HomePage> {
                     Icons.directions_transit,
                   )),
               SizedBox(
-                width: 400,
+                height: 60,
+                width: 450,
                 child: DropdownButton<String>(
                   isExpanded: true,
                   value: fromValue,
@@ -98,8 +99,12 @@ class _HomePageState extends State<HomePage> {
                   }).toList(),
                 ),
               ),
+              const SizedBox(
+                height: 10,
+              ),
               SizedBox(
-                width: 400,
+                height: 60,
+                width: 450,
                 child: DropdownButton<String>(
                   isExpanded: true,
                   value: destinationValue,
@@ -134,7 +139,7 @@ class _HomePageState extends State<HomePage> {
               ),
               SizedBox(
                 height: 50,
-                width: 200,
+                width: 250,
                 child: ElevatedButton(
                   style: TextButton.styleFrom(
                     primary: Colors.black,
