@@ -17,16 +17,27 @@ class _HomePageState extends State<HomePage> {
     return MaterialApp(
       home: Scaffold(
         appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(110),
+          preferredSize: const Size.fromHeight(200),
           child: AppBar(
             automaticallyImplyLeading: false,
-            title: const Text(
-              'Search for Buses',
-              style: TextStyle(color: Colors.white, fontSize: 28),
-            ),
             centerTitle: true,
-            flexibleSpace: Container(
-              decoration: const BoxDecoration(color: Colors.blueAccent),
+            flexibleSpace: Stack(
+              children: const [
+                Image(
+                  image: AssetImage("images/banner1.jpg"),
+                  fit: BoxFit.cover,
+                  height: double.infinity,
+                  width: double.infinity,
+                  alignment: Alignment.center,
+                ),
+                Center(
+                  child: Text(
+                    'Search for Buses',
+                    style: TextStyle(color: Colors.white, fontSize: 28),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ],
             ),
           ),
         ),
@@ -43,10 +54,10 @@ class _HomePageState extends State<HomePage> {
                     bottomRight: Radius.circular(40),
                     bottomLeft: Radius.circular(40),
                   ),
-                  child: Image(
-                    image: NetworkImage(
-                        'https://media.istockphoto.com/photos/view-from-back-seat-at-coach-bus-more-seats-in-blurred-background-picture-id1137539144?k=20&m=1137539144&s=612x612&w=0&h=4_Ct_m48W1qyybqJ9WAgIT-bjZInqMljQSVx7lxXld4='),
-                  ),
+                  // child: Image(
+                  //   image: NetworkImage(
+                  //       'https://media.istockphoto.com/photos/view-from-back-seat-at-coach-bus-more-seats-in-blurred-background-picture-id1137539144?k=20&m=1137539144&s=612x612&w=0&h=4_Ct_m48W1qyybqJ9WAgIT-bjZInqMljQSVx7lxXld4='),
+                  // ),
                 ),
               ),
               IconButton(
@@ -63,10 +74,10 @@ class _HomePageState extends State<HomePage> {
                   value: fromValue,
                   icon: const Icon(Icons.arrow_downward),
                   elevation: 16,
-                  style: const TextStyle(color: Colors.deepPurple),
+                  style: const TextStyle(color: Colors.blueAccent),
                   underline: Container(
                     height: 2,
-                    color: Colors.deepPurpleAccent,
+                    color: Colors.blueAccent,
                   ),
                   onChanged: (String? newValue) {
                     setState(() {
@@ -92,12 +103,12 @@ class _HomePageState extends State<HomePage> {
                 child: DropdownButton<String>(
                   isExpanded: true,
                   value: destinationValue,
-                  icon: const Icon(Icons.arrow_downward),
+                  icon: const Icon(Icons.arrow_upward),
                   elevation: 16,
-                  style: const TextStyle(color: Colors.deepPurple),
+                  style: const TextStyle(color: Colors.blueAccent),
                   underline: Container(
                     height: 2,
-                    color: Colors.deepPurpleAccent,
+                    color: Colors.blueAccent,
                   ),
                   onChanged: (String? newValue) {
                     setState(() {
