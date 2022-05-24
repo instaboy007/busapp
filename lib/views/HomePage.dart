@@ -1,5 +1,7 @@
 import 'package:busapp/views/BusDetailsPage.dart';
+import 'package:busapp/widgets/BackgroundWidget.dart';
 import 'package:flutter/material.dart';
+import '../globals.dart' as globals;
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -12,24 +14,359 @@ class _HomePageState extends State<HomePage> {
   String destinationValue = 'Destination';
   String fromValue = 'From';
 
+  List<String> from = [
+    'From',
+    '100 feet/',
+    'GP Aalamaram',
+    'Vadavalli',
+    'Aalandhurai',
+    ' Aathupalam',
+    'Aathupalam/L&T',
+    ' tollbooth',
+    'Aavarampalayam',
+    'Agri',
+    'Akkanaickenpalayam',
+    ' Alankar',
+    'Nanjappa',
+    'Saravanampatti',
+    ' Anna Statue',
+    'Avinashi rd',
+    ' Annanagar',
+    'Vadavalli rd',
+    ' Annapoorna',
+    'R.S.Puram',
+    ' Annur',
+    ' Appanaickenpatti',
+    ' Arasipalayam',
+    ' Arasur',
+    'Avinashi road',
+    'Athipalayam',
+    'Sathy rd',
+    ' Bharathi nagar',
+    'Sathy rd',
+    ' Bharathiyar University',
+    ' BigBazaar',
+    ' Boat House',
+    'Singanallur',
+    ' Central studio',
+    'SInganallur ',
+    'Chandrapuram',
+    ' Cheran ',
+    'Colony ',
+    'Cheran Nagar',
+    'MTP rd',
+    ' CheranMaNagar ',
+    'Chetti veedhi',
+    'Perur rd ',
+    'Chettipalayam ',
+    'Chinna Thadagam ',
+    'Chinnavedampatti ',
+    'Chinniyampalayam CIT',
+    'CODISSIA CMC',
+    'Avinashi rd CMS',
+    'Ganapathy ',
+    'Collectorate/DSP ',
+    'Devarayapuram ',
+    'Dhaliyur ',
+    'Dhamu nagar',
+    'Puliakulam',
+    'Eachanari',
+    ' Rly gate',
+    ' EB Colony',
+    'Vadavalli rd ',
+    'Edayarpalayam',
+    'Palghat rd Edayarpalayam',
+    'Pappampatti Edayarpalayam',
+    'Thadagam rd Edayarpalayam',
+    'Vellalur ELGI Nagar',
+    'Singanallur Eru Company',
+    'MTP rd ESI',
+    'Singanallur Ettimadai Flower Market Ganapathy Ganapathy Managar ',
+    'Gandhi Managar Gandhi Park Gandhipuram Ganesapuram',
+    'Sathy rd GCT',
+    'Thadagam rd GEM Hospital',
+    'Ramanathapuram GN mills',
+    'MTP rd Goldwins Government Hospital GV Residency Hope College Housing Unit',
+    'Ganapathy Housing unit',
+    'Kovundampalayam Housing Unit',
+    'Kurichi Housing Unit',
+    'Singanallur Idigarai IOB Colony',
+    'Maruthamalai Irugur Irugur Pirivu Iruttupallam',
+    'Siruvani rd ISHA YOGA centre ITI',
+    'MTP rd Iyer Hospital',
+    'Trichy rd Jai Shanthi',
+    'Singanallur Jothipuram/Anna University Kalangal',
+    'Sulur Kalappatti Kalappatti Pirivu',
+    'Sathy rd Kallapalayam',
+    'Pappampatti Kalveerampalayam Kalyan',
+    '100ft rd Kangeyampalayam Kaniyur Kannampalayam Kanuvai Karadimadai Karamadai Karanampettai Karpagam Complex',
+    '100ft Karpagam University Karuganpalayam',
+    'Somanur Karumathampatti Karumbukkadai',
+    'Ukkadam Karunya University Karuppagoundan st Kavundampalayam KCT',
+    'Saravanampatti Kennedy',
+    'R.S.Puram KG Chavadi',
+    'Palghat rd KG Hospital/Theatre KG mill/school',
+    'Annur KGISL',
+    'Saravanampatti',
+    'Kidney Centre Kinathukadavu KMCH',
+    'Avinashi rd KNG Pudur KNG Pudur pirivu Kottaipalayam Kovai Kondattam Kovaipudur Kovaipudur Pirivu Kovilmedu Kovilpalayam',
+    'Sathy rd Kulathupalayam Kumaran Kottam',
+    'Trichy road Kumaran mill',
+    'MTP rd Kuniamuthur Kunnathur',
+    'Sathy rd Kurichi Kurumbapalayam',
+    'Sathy rd Lakshmi Mills Junction Lakshmi puram',
+    'Sathy rd Law College Lawley Road LIC Colony',
+    'Selvapuram LIONs',
+    'Singanallur LMW',
+    'MTP rd Madukkarai Mahendra',
+    'Nehru nagar Mailkal',
+    'Madukkarai Malumichampatti Mani School/GKNM Hospl Maniakaranpalayam Manis Theatre Marakkadai Maruthamalai Mathampatti Mathappur',
+    'Somanur Mullai Nagar',
+    'Vadavalli Murugan mills',
+    'MTP rd Muthu theatre',
+    'MTP rd Muthusamy Colony',
+    'Selvapuram Myleripalayam Myleripalayam Pirivu N.G.P ',
+    'Institutes',
+    ' Nanjundapuram ',
+    'Narasimmanaicken',
+    'Narasipuram Nava India',
+    'Avinashi rd Navavoor Pirivu Neelambur Neelikonampalayam Nehru nagar NGGO Colony North Coimbatore/Vadakovai Olympus',
+    'Ramanathapuram Omni bus stand Onapalayam',
+    'Thondamuthur rd Ondipudur Othakalmandapam Pachapalayam',
+    'Perur Pal Company(Aavin) Palathurai Pallapalayam Pannimadai Pappampatti Pappampatti Pirivu Park Gate',
+    'Nanjappa rd Pattanam Peedampalli Periyanaickenpalayam Perur PN pudur',
+    'Vadavalli Podhanur Polytechnic',
+    'Avinashi rd Poochiyur Poondi temple Post Office',
+    'R.S.Puram Power House Press Colony',
+    'MTP rd Pricol',
+    'MTP ',
+    'rd PSG Arts PSG Hospital PSG Krishnammal PSG Tech Puliakulam Puliamaram stop',
+    'NSR rd Railway Station Rainbow',
+    'Trichy rd Rajalakshmi mills/PERKS Ramakrishna Hospital Ramakrishna mill',
+    'Sathy rd Ramanathapuram Ramanuja Nagar Ramnarayana mill',
+    'MTP rd Ranganathapuram',
+    'Sulur Rangasamy Goundan pudur Rasipalayam',
+    'Sulur Rathinam Institutions Ravathur Pirivu Residency RMS Office Rottigoundanur',
+    'Madukkarai RTO Office RVS',
+    'Sulur Sadivayal',
+    'Siruvani rd ',
+    'Saibaba Colony Samalapuram',
+    'Somanur Sanganoor Saradhambal Temple   ',
+    '  Race Course Saravanampatti Savitha Hall',
+    'R.S.Puram Selakkarachal Sharp Industriesipudur SITRA/Airport Sivaji Colony',
+    'Thadagam rd Sivanandha Colony Sivanandha mill',
+    'Sathy rd SNS Institutions',
+    'Sathy rd Somanur Somayanur',
+    'Thadagam rd Sowripalayam Sowripalayam Pirivu Sreepathi/Kannan Srivalli theatre',
+    'NSR rd SRP mill',
+    'Sathy rd Suguna Kalyana Mandapam Sukravarpettai Sulur Sulur Aero Sundakkamuthur Sundharapuram Sungam Tamil kalloori',
+    'Perur Telungupalayam',
+    'Selvapuram Telungupalayam Pirivu',
+    'Perur Telungupalayam Pirivu     Annur Textool',
+    'Sathy rd Thadagam/Anuvavi temple Thanner Pandhal Theethipalayam',
+    'Perur Thirumalayampalayam Thomas Park',
+    'Race Course Thondamuthur Thottipalayam Pirivu Thudiyalur Town Hall TVS',
+    'MTP rd TVS Nagar',
+    'Thadagam rd Udayampalayam',
+    'Ganapathy Udayampalayam',
+    'Sowripalayam Ukkadam Uppilipalayam',
+    'Avinashi rd Uppilipalayam',
+    'Sowripalayam Vadamadurai Vadavalli Varatharaja',
+    'Mills Varatharajapuram Vasantha mills',
+    'Singanallur Vedapatti Veera Keralam ',
+    'Veerapandi Pirivu',
+    'MTP rd Veerapandi Pudur Velandipalayam Velanthavalam Vellakinar Vellakinar Pirivu',
+    'MTP rd Vellalur Vellamadai Venkittapuram Vilankurichi Visuwasapuram/Sahara City VOC Park Walayar Womens Polytechnic '
+  ];
+  List<String> To = [
+    'Destination',
+    '100 feet/',
+    'GP Aalamaram',
+    'Vadavalli',
+    'Aalandhurai',
+    ' Aathupalam',
+    'Aathupalam/L&T',
+    ' tollbooth',
+    'Aavarampalayam',
+    'Agri',
+    'Akkanaickenpalayam',
+    ' Alankar',
+    'Nanjappa',
+    'Saravanampatti',
+    ' Anna Statue',
+    'Avinashi rd',
+    ' Annanagar',
+    'Vadavalli rd',
+    ' Annapoorna',
+    'R.S.Puram',
+    ' Annur',
+    ' Appanaickenpatti',
+    ' Arasipalayam',
+    ' Arasur',
+    'Avinashi road',
+    'Athipalayam',
+    'Sathy rd',
+    ' Bharathi nagar',
+    'Sathy rd',
+    ' Bharathiyar University',
+    ' BigBazaar',
+    ' Boat House',
+    'Singanallur',
+    ' Central studio',
+    'SInganallur ',
+    'Chandrapuram',
+    ' Cheran ',
+    'Colony ',
+    'Cheran Nagar',
+    'MTP rd',
+    ' CheranMaNagar ',
+    'Chetti veedhi',
+    'Perur rd ',
+    'Chettipalayam ',
+    'Chinna Thadagam ',
+    'Chinnavedampatti ',
+    'Chinniyampalayam CIT',
+    'CODISSIA CMC',
+    'Avinashi rd CMS',
+    'Ganapathy ',
+    'Collectorate/DSP ',
+    'Devarayapuram ',
+    'Dhaliyur ',
+    'Dhamu nagar',
+    'Puliakulam',
+    'Eachanari',
+    ' Rly gate',
+    ' EB Colony',
+    'Vadavalli rd ',
+    'Edayarpalayam',
+    'Palghat rd Edayarpalayam',
+    'Pappampatti Edayarpalayam',
+    'Thadagam rd Edayarpalayam',
+    'Vellalur ELGI Nagar',
+    'Singanallur Eru Company',
+    'MTP rd ESI',
+    'Singanallur Ettimadai Flower Market Ganapathy Ganapathy Managar ',
+    'Gandhi Managar Gandhi Park Gandhipuram Ganesapuram',
+    'Sathy rd GCT',
+    'Thadagam rd GEM Hospital',
+    'Ramanathapuram GN mills',
+    'MTP rd Goldwins Government Hospital GV Residency Hope College Housing Unit',
+    'Ganapathy Housing unit',
+    'Kovundampalayam Housing Unit',
+    'Kurichi Housing Unit',
+    'Singanallur Idigarai IOB Colony',
+    'Maruthamalai Irugur Irugur Pirivu Iruttupallam',
+    'Siruvani rd ISHA YOGA centre ITI',
+    'MTP rd Iyer Hospital',
+    'Trichy rd Jai Shanthi',
+    'Singanallur Jothipuram/Anna University Kalangal',
+    'Sulur Kalappatti Kalappatti Pirivu',
+    'Sathy rd Kallapalayam',
+    'Pappampatti Kalveerampalayam Kalyan',
+    '100ft rd Kangeyampalayam Kaniyur Kannampalayam Kanuvai Karadimadai Karamadai Karanampettai Karpagam Complex',
+    '100ft Karpagam University Karuganpalayam',
+    'Somanur Karumathampatti Karumbukkadai',
+    'Ukkadam Karunya University Karuppagoundan st Kavundampalayam KCT',
+    'Saravanampatti Kennedy',
+    'R.S.Puram KG Chavadi',
+    'Palghat rd KG Hospital/Theatre KG mill/school',
+    'Annur KGISL',
+    'Saravanampatti',
+    'Kidney Centre Kinathukadavu KMCH',
+    'Avinashi rd KNG Pudur KNG Pudur pirivu Kottaipalayam Kovai Kondattam Kovaipudur Kovaipudur Pirivu Kovilmedu Kovilpalayam',
+    'Sathy rd Kulathupalayam Kumaran Kottam',
+    'Trichy road Kumaran mill',
+    'MTP rd Kuniamuthur Kunnathur',
+    'Sathy rd Kurichi Kurumbapalayam',
+    'Sathy rd Lakshmi Mills Junction Lakshmi puram',
+    'Sathy rd Law College Lawley Road LIC Colony',
+    'Selvapuram LIONs',
+    'Singanallur LMW',
+    'MTP rd Madukkarai Mahendra',
+    'Nehru nagar Mailkal',
+    'Madukkarai Malumichampatti Mani School/GKNM Hospl Maniakaranpalayam Manis Theatre Marakkadai Maruthamalai Mathampatti Mathappur',
+    'Somanur Mullai Nagar',
+    'Vadavalli Murugan mills',
+    'MTP rd Muthu theatre',
+    'MTP rd Muthusamy Colony',
+    'Selvapuram Myleripalayam Myleripalayam Pirivu N.G.P ',
+    'Institutes',
+    ' Nanjundapuram ',
+    'Narasimmanaicken',
+    'Narasipuram Nava India',
+    'Avinashi rd Navavoor Pirivu Neelambur Neelikonampalayam Nehru nagar NGGO Colony North Coimbatore/Vadakovai Olympus',
+    'Ramanathapuram Omni bus stand Onapalayam',
+    'Thondamuthur rd Ondipudur Othakalmandapam Pachapalayam',
+    'Perur Pal Company(Aavin) Palathurai Pallapalayam Pannimadai Pappampatti Pappampatti Pirivu Park Gate',
+    'Nanjappa rd Pattanam Peedampalli Periyanaickenpalayam Perur PN pudur',
+    'Vadavalli Podhanur Polytechnic',
+    'Avinashi rd Poochiyur Poondi temple Post Office',
+    'R.S.Puram Power House Press Colony',
+    'MTP rd Pricol',
+    'MTP ',
+    'rd PSG Arts PSG Hospital PSG Krishnammal PSG Tech Puliakulam Puliamaram stop',
+    'NSR rd Railway Station Rainbow',
+    'Trichy rd Rajalakshmi mills/PERKS Ramakrishna Hospital Ramakrishna mill',
+    'Sathy rd Ramanathapuram Ramanuja Nagar Ramnarayana mill',
+    'MTP rd Ranganathapuram',
+    'Sulur Rangasamy Goundan pudur Rasipalayam',
+    'Sulur Rathinam Institutions Ravathur Pirivu Residency RMS Office Rottigoundanur',
+    'Madukkarai RTO Office RVS',
+    'Sulur Sadivayal',
+    'Siruvani rd ',
+    'Saibaba Colony Samalapuram',
+    'Somanur Sanganoor Saradhambal Temple   ',
+    '  Race Course Saravanampatti Savitha Hall',
+    'R.S.Puram Selakkarachal Sharp Industriesipudur SITRA/Airport Sivaji Colony',
+    'Thadagam rd Sivanandha Colony Sivanandha mill',
+    'Sathy rd SNS Institutions',
+    'Sathy rd Somanur Somayanur',
+    'Thadagam rd Sowripalayam Sowripalayam Pirivu Sreepathi/Kannan Srivalli theatre',
+    'NSR rd SRP mill',
+    'Sathy rd Suguna Kalyana Mandapam Sukravarpettai Sulur Sulur Aero Sundakkamuthur Sundharapuram Sungam Tamil kalloori',
+    'Perur Telungupalayam',
+    'Selvapuram Telungupalayam Pirivu',
+    'Perur Telungupalayam Pirivu     Annur Textool',
+    'Sathy rd Thadagam/Anuvavi temple Thanner Pandhal Theethipalayam',
+    'Perur Thirumalayampalayam Thomas Park',
+    'Race Course Thondamuthur Thottipalayam Pirivu Thudiyalur Town Hall TVS',
+    'MTP rd TVS Nagar',
+    'Thadagam rd Udayampalayam',
+    'Ganapathy Udayampalayam',
+    'Sowripalayam Ukkadam Uppilipalayam',
+    'Avinashi rd Uppilipalayam',
+    'Sowripalayam Vadamadurai Vadavalli Varatharaja',
+    'Mills Varatharajapuram Vasantha mills',
+    'Singanallur Vedapatti Veera Keralam ',
+    'Veerapandi Pirivu',
+    'MTP rd Veerapandi Pudur Velandipalayam Velanthavalam Vellakinar Vellakinar Pirivu',
+    'MTP rd Vellalur Vellamadai Venkittapuram Vilankurichi Visuwasapuram/Sahara City VOC Park Walayar Womens Polytechnic '
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(200),
-          child: AppBar(
-            automaticallyImplyLeading: false,
-            centerTitle: true,
-            flexibleSpace: Stack(
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(180),
+        child: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          foregroundColor: Colors.transparent,
+          automaticallyImplyLeading: false,
+          centerTitle: true,
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              color: const Color.fromARGB(255, 121, 213, 255),
+              boxShadow: const [BoxShadow(blurRadius: 10.0)],
+              borderRadius: BorderRadius.vertical(
+                  bottom: Radius.elliptical(
+                      MediaQuery.of(context).size.width, 25.0)),
+            ),
+            height: 180,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: const [
-                Image(
-                  image: AssetImage("images/banner1.jpg"),
-                  fit: BoxFit.cover,
-                  height: double.infinity,
-                  width: double.infinity,
-                  alignment: Alignment.center,
-                ),
                 Center(
                   child: Text(
                     'Search for Buses',
@@ -41,122 +378,124 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
-        body: Center(
-          child: Container(
-            color: Colors.black26,
-            width: double.infinity,
-            child: Column(children: <Widget>[
-              Container(
-                width: 750,
-                margin: const EdgeInsets.all(10),
-                child: const ClipRRect(
-                  borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(40),
-                    bottomLeft: Radius.circular(40),
+      ),
+      body: Stack(
+        children: <Widget>[
+          const BackgroundImage(),
+          Center(
+            child: Container(
+              padding: const EdgeInsets.all(10),
+              child: Container(
+                height: 300,
+                width: 400,
+                padding: const EdgeInsets.all(10),
+                decoration: const BoxDecoration(
+                    color: Color.fromARGB(200, 255, 255, 255),
+                    borderRadius: BorderRadius.all(Radius.circular(20))),
+                child: Column(
+                  children: <Widget>[
+                  IconButton(
+                      onPressed: () {
+                        setState(() => {});
+                      },
+                      icon: const Icon(
+                        Icons.directions_transit,
+                      )),
+                  SizedBox(
+                    height: 60,
+                    width: 260,
+                    child: DropdownButton<String>(
+                      
+                      isExpanded: true,
+                      value: fromValue,
+                      icon: const Icon(Icons.arrow_downward),
+                      elevation: 1,
+                      style: const TextStyle(color: Colors.blueAccent),
+                      underline: Container(
+                        height: 2,
+                        color: Colors.blueAccent,
+                      ),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          fromValue = newValue!;
+                        });
+                      },
+                      items: from.map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
                   ),
-                  // child: Image(
-                  //   image: NetworkImage(
-                  //       'https://media.istockphoto.com/photos/view-from-back-seat-at-coach-bus-more-seats-in-blurred-background-picture-id1137539144?k=20&m=1137539144&s=612x612&w=0&h=4_Ct_m48W1qyybqJ9WAgIT-bjZInqMljQSVx7lxXld4='),
-                  // ),
-                ),
-              ),
-              IconButton(
-                  onPressed: () {
-                    setState(() => {});
-                  },
-                  icon: const Icon(
-                    Icons.directions_transit,
-                  )),
-              SizedBox(
-                height: 60,
-                width: 450,
-                child: DropdownButton<String>(
-                  isExpanded: true,
-                  value: fromValue,
-                  icon: const Icon(Icons.arrow_downward),
-                  elevation: 16,
-                  style: const TextStyle(color: Colors.blueAccent),
-                  underline: Container(
-                    height: 2,
-                    color: Colors.blueAccent,
+                  const SizedBox(
+                    height: 10,
                   ),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      fromValue = newValue!;
-                    });
-                  },
-                  items: <String>[
-                    'From',
-                    'Delhi ',
-                    'Mumbai',
-                    'Chennai',
-                    'Kolkata'
-                  ].map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              SizedBox(
-                height: 60,
-                width: 450,
-                child: DropdownButton<String>(
-                  isExpanded: true,
-                  value: destinationValue,
-                  icon: const Icon(Icons.arrow_upward),
-                  elevation: 16,
-                  style: const TextStyle(color: Colors.blueAccent),
-                  underline: Container(
-                    height: 2,
-                    color: Colors.blueAccent,
+                  SizedBox(
+                    height: 60,
+                    width: 260,
+                    child: DropdownButton<String>(
+                      isExpanded: true,
+                      value: destinationValue,
+                      icon: const Icon(Icons.arrow_upward),
+                      elevation: 16,
+                      style: const TextStyle(color: Colors.blueAccent),
+                      underline: Container(
+                        height: 2,
+                        color: Colors.blueAccent,
+                      ),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          destinationValue = newValue!;
+                        });
+                      },
+                      items: To.map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
                   ),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      destinationValue = newValue!;
-                    });
-                  },
-                  items: <String>[
-                    'Destination',
-                    'Delhi ',
-                    'Mumbai',
-                    'Chennai',
-                    'Kolkata'
-                  ].map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              SizedBox(
-                height: 50,
-                width: 250,
-                child: ElevatedButton(
-                  style: TextButton.styleFrom(
-                    primary: Colors.black,
+                  const SizedBox(
+                    height: 10,
                   ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const BusDetailsPage()),
-                    );
-                  },
-                  child: const Text('Search Buses '),
-                ),
-              )
-            ]),
+                  SizedBox(
+                    height: 50,
+                    width: 250,
+                    child: ElevatedButton(
+                      style: TextButton.styleFrom(
+                        primary: Colors.black,
+                      ),
+                      onPressed: () {
+                        globals.dest = destinationValue;
+                        globals.src = fromValue;
+                        if (fromValue == destinationValue) {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return const AlertDialog(
+                                content: Text(
+                                    'Source and Destination should not be same '),
+                              );
+                            },
+                          );
+                        } else {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const BusDetailsPage()),
+                          );
+                        }
+                      },
+                      child: const Text('Search Buses '),
+                    ),
+                  )
+                ]),
+              ),
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

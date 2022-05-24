@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "692596527957",
+    "project_id": "cloudbusapp-c288d",
+    "storage_bucket": "cloudbusapp-c288d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:692596527957:android:b540d17261dd4d263c95dc",
+        "android_client_info": {
+          "package_name": "com.example.busapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "692596527957-jq0uhgev2fnnj2ml2agdul9o8114r5ke.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBH3mB4HB5ctoo50ounIUoMkOC7y2d4v7I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "692596527957-jq0uhgev2fnnj2ml2agdul9o8114r5ke.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

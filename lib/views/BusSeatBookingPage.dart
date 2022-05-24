@@ -1,5 +1,7 @@
+import 'package:busapp/views/ticket.dart';
 import 'package:busapp/widgets/BackgroundWidget.dart';
 import 'package:flutter/material.dart';
+import '../globals.dart' as globals;
 
 class BusSeatBookingPage extends StatefulWidget {
   const BusSeatBookingPage({Key? key}) : super(key: key);
@@ -20,13 +22,13 @@ class _BusSeatBookingPageState extends State<BusSeatBookingPage> {
     [1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1, 1],
   ];
-
+  int c = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(160),
+        preferredSize: const Size.fromHeight(180),
         child: AppBar(
           elevation: 0,
           backgroundColor: Colors.transparent,
@@ -35,45 +37,74 @@ class _BusSeatBookingPageState extends State<BusSeatBookingPage> {
           centerTitle: true,
           flexibleSpace: Container(
             decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 121, 213, 255),
-              boxShadow: const [BoxShadow(blurRadius: 10.0)],
+              color: Color.fromARGB(255, 121, 213, 255),
+              boxShadow: [BoxShadow(blurRadius: 5.0)],
               borderRadius: BorderRadius.vertical(
                   bottom: Radius.elliptical(
                       MediaQuery.of(context).size.width, 25.0)),
             ),
-            height: 160,
-            padding: const EdgeInsets.all(65),
+            height: 180,
+            padding: const EdgeInsets.fromLTRB(10, 65, 10, 65),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const [
-                    Text(
-                      'From',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 25,
-                        fontWeight: FontWeight.w900,
-                      ),
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Icon(
+                          Icons.arrow_downward_outlined,
+                          color: Colors.white,
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Icon(
+                          Icons.arrow_upward_outlined,
+                          color: Colors.white,
+                        ),
+                      ],
                     ),
                   ],
                 ),
-                Column(children: const [
-                  Icon(
-                    Icons.compare_arrows_outlined,
-                    color: Colors.white,
-                  ),
-                ]),
                 Column(
                   children: const [
-                    Text(
-                      'To',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 25,
-                        fontWeight: FontWeight.w900,
-                      ),
+                    SizedBox(
+                      width: 20,
+                    )
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          globals.src.toUpperCase(),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 21,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          globals.dest.toUpperCase(),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 21,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -89,53 +120,70 @@ class _BusSeatBookingPageState extends State<BusSeatBookingPage> {
             child: Column(
               children: [
                 Container(
-                  padding: const EdgeInsets.fromLTRB(0, 180, 0, 0),
+                  padding: const EdgeInsets.fromLTRB(0, 200, 0, 0),
                   child: SizedBox(
-                    height: 380,
+                    height: 500,
                     child: Card(
-                      color: Color.fromARGB(220, 255, 255, 255),
+                      color: const Color.fromARGB(220, 255, 255, 255),
                       child: Container(
                         padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
                         width: 300,
-                        child: Column(
-                          children: <Widget>[
-                            for (int i = 0; i < 9; i++)
-                              Container(
-                                margin: EdgeInsets.fromLTRB(2, 2, 2, 2),
-                                child: Row(
-                                  children: <Widget>[
-                                    for (int x = 1; x < 6; x++)
-                                      Expanded(
-                                        child: (x == 3)
-                                            ? Container()
-                                            : Container(
-                                                margin: EdgeInsets.all(2),
-                                                child: _chairStatus[i][x - 1] ==
-                                                        1
-                                                    ? availableChair(i, x - 1)
-                                                    : _chairStatus[i][x - 1] ==
-                                                            2
-                                                        ? selectedChair(
-                                                            i, x - 1)
-                                                        : reservedChair(),
-                                              ),
-                                      ),
-                                  ],
+                        height: 400,
+                        child: SingleChildScrollView(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              for (int i = 0; i < 9; i++)
+                                Container(
+                                  margin: EdgeInsets.fromLTRB(2, 2, 2, 2),
+                                  child: Row(
+                                    children: <Widget>[
+                                      for (int x = 1; x < 6; x++)
+                                        Expanded(
+                                          child: (x == 3)
+                                              ? Container()
+                                              : Container(
+                                                  margin: EdgeInsets.all(2),
+                                                  child: _chairStatus[i][x - 1] ==
+                                                          1
+                                                      ? availableChair(i, x - 1)
+                                                      : _chairStatus[i][x - 1] ==
+                                                              2
+                                                          ? selectedChair(
+                                                              i, x - 1)
+                                                          : reservedChair(),
+                                                ),
+                                        ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
                 Container(
-                  
                   padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                   height: 60,
                   width: 300,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      for (int i = 0; i < _chairStatus.length; i++) {
+                        for (int j = 0; j < 6; j++) {
+                          if (_chairStatus[i][j] == 2) {
+                            c += 1;
+                          }
+                        }
+                      }
+                      globals.tickets = c;
+                      print(_chairStatus);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => finalState()));
+                    },
                     child: const Text('Book'),
                   ),
                 ),
@@ -154,7 +202,7 @@ class _BusSeatBookingPageState extends State<BusSeatBookingPage> {
         setState(() {});
       },
       child: Container(
-        height: 30,
+        height: 50,
         width: 10,
         decoration: BoxDecoration(
             color: Colors.lightBlueAccent,
@@ -169,14 +217,16 @@ class _BusSeatBookingPageState extends State<BusSeatBookingPage> {
         _chairStatus[a][b] = 2;
         setState(() {});
       },
-      child: Container(
-        height: 30,
+      child: SizedBox(
+        height: 50,
         width: 10,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(3.0),
-          border: Border.all(
-            color: Color.fromARGB(255, 150, 150, 150),
-            width: 1,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(3.0),
+            border: Border.all(
+              color: Color.fromARGB(255, 150, 150, 150),
+              width: 1,
+            ),
           ),
         ),
       ),
@@ -185,7 +235,7 @@ class _BusSeatBookingPageState extends State<BusSeatBookingPage> {
 
   Widget reservedChair() {
     return Container(
-      height: 30,
+      height: 50,
       width: 10,
       decoration: BoxDecoration(
           color: Color.fromRGBO(15, 15, 15, 0.24),

@@ -38,8 +38,34 @@
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
+
+
 </head>
 <body>
+  <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyDstatYNaGvBxXg8eS5kmz7Tj4Fwg9kV3E",
+    authDomain: "cloudbusapp-c288d.firebaseapp.com",
+    projectId: "cloudbusapp-c288d",
+    storageBucket: "cloudbusapp-c288d.appspot.com",
+    messagingSenderId: "692596527957",
+    appId: "1:692596527957:web:c6a5c3cc449cd9473c95dc",
+    measurementId: "G-0PE13QJ056"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+
   <script>
     window.addEventListener('load', function(ev) {
       // Download main.dart.js
